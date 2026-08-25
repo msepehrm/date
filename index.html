@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>یه دعوتِ خیلی جدی 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#ff4d6d; --rose-deep:#d81e45; --coral:#ff8fa3;
+    --ink:#4a1226; --ink-soft:#7c3a52;
+    --card:#fffafd; --line:#ffd9e1;
+    --gold:#ffb703;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Vazirmatn',sans-serif; color:var(--ink); min-height:100dvh; overflow-x:hidden;
+    background:
+      radial-gradient(55% 45% at 88% 8%, #ffe0e9 0%, transparent 60%),
+      radial-gradient(45% 40% at 8% 92%, #ffe9d8 0%, transparent 60%),
+      radial-gradient(40% 35% at 50% 50%, #fff6f8 0%, transparent 70%),
+      #fff1f5;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M17 27c-6-6-12-10.2-12-15C5 8.2 7.9 5.3 11.6 5.3c2.2 0 4.2 1.1 5.4 2.8 1.2-1.7 3.2-2.8 5.4-2.8 3.7 0 6.6 2.9 6.6 6.7 0 4.8-6 9-12 15z' fill='%23ff4d6d' fill-opacity='.06'/%3E%3C/svg%3E");
+  }
+  .display{font-family:'Lalezar',cursive; font-weight:400}
+
+  /* قلب‌های شناور پس‌زمینه */
+  #floats{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+  .fl{position:absolute;bottom:-48px;animation:floatUp linear infinite;opacity:.5;will-change:transform}
+  @keyframes floatUp{
+    0%{transform:translate(0,0) rotate(-8deg)}
+    25%{transform:translate(16px,-28vh) rotate(8deg)}
+    50%{transform:translate(-12px,-56vh) rotate(-6deg)}
+    75%{transform:translate(14px,-84vh) rotate(7deg)}
+    100%{transform:translate(-6px,-114vh) rotate(-4deg)}
+  }
+
+  main{position:relative;z-index:2;max-width:680px;margin:0 auto;padding:clamp(14px,4vw,36px)}
+  .topbar{text-align:center;margin-bottom:18px}
+  .badge{
+    display:inline-flex;align-items:center;gap:.45em;background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:.4em 1.1em;font-size:.85rem;font-weight:700;color:var(--rose-deep);
+    box-shadow:0 6px 18px rgba(216,30,69,.10); animation:bob 3.4s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+  .screen{display:none}
+  .screen.active{display:block;animation:rise .55s cubic-bezier(.22,1,.36,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(26px) scale(.985)}to{opacity:1;transform:none}}
+
+  .card{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:42px 30px 42px 30px;
+    box-shadow:0 26px 60px rgba(216,30,69,.13), 0 3px 0 #fff inset;
+    padding:clamp(26px,5vw,48px); text-align:center; position:relative;
+  }
+  .card.glowy{border-color:var(--coral); box-shadow:0 0 0 4px #ffdde6, 0 26px 70px rgba(216,30,69,.22)}
+
+  .mascot{font-size:clamp(56px,11vw,84px);line-height:1;display:inline-block;animation:mBounce 1.8s ease-in-out infinite;filter:drop-shadow(0 10px 14px rgba(216,30,69,.18))}
+  @keyframes mBounce{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+  .mascot.swap{animation:mPop .5s cubic-bezier(.34,1.6,.5,1)}
+  @keyframes mPop{0%{transform:scale(.4) rotate(-20deg)}100%{transform:scale(1) rotate(0)}}
+
+  h1{font-family:'Lalezar';font-weight:400;font-size:clamp(1.9rem,5.6vw,3rem);color:var(--rose-deep);margin:.35em 0 .1em;line-height:1.35}
+  h1.pop{animation:qPop .45s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes qPop{0%{transform:scale(.82);opacity:.3}100%{transform:scale(1);opacity:1}}
+  .sub{color:var(--ink-soft);font-weight:600;font-size:clamp(.95rem,2.6vw,1.08rem)}
+
+  .btnrow{margin-top:clamp(26px,6vw,42px);display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;align-items:center;min-height:110px}
+
+  .btn-yes{
+    font-family:'Lalezar';font-weight:400;cursor:pointer;border:none;color:#fff;
+    font-size:1.35rem;padding:.62em 1.7em;border-radius:999px;
+    background:linear-gradient(135deg,#ff5c7a,#ff2e63 60%,#e0164f);
+    box-shadow:0 12px 28px rgba(255,46,99,.38), 0 2px 0 #b30f3f inset;
+    transition:font-size .45s cubic-bezier(.34,1.4,.6,1), box-shadow .3s;
+    animation:heartbeat 1.7s ease-in-out infinite;
+  }
+  .btn-yes:hover{box-shadow:0 16px 36px rgba(255,46,99,.5)}
+  .btn-yes:active{transform:scale(.94)}
+  @keyframes heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.06)}24%{transform:scale(1)}36%{transform:scale(1.05)}48%{transform:scale(1)}}
+  .btn-yes.final-mode{animation:heartbeat 1s ease-in-out infinite;box-shadow:0 0 0 6px #ffd7e0, 0 18px 44px rgba(255,46,99,.55)}
+
+  .btn-no{
+    font-family:'Vazirmatn';cursor:pointer;color:var(--ink-soft);font-weight:700;
+    font-size:1rem;padding:.7em 1.7em;border-radius:999px;background:#fff;
+    border:2px solid #e8ccd4; transition:font-size .4s, padding .4s, transform .25s, opacity .4s;
+  }
+  .btn-no:hover{border-color:#d9a8b6}
+  .btn-no.gone{opacity:0;transform:scale(.1) rotate(40deg);pointer-events:none}
+
+  .spark{position:absolute;pointer-events:none;animation:twinkle 1.4s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+
+  /* پیشرفت */
+  #planHeader{display:none;animation:rise .5s}
+  #planHeader.show{display:block}
+  .plan-title{text-align:center;font-family:'Lalezar';font-size:clamp(1.4rem,4.4vw,2rem);color:var(--rose-deep);margin:6px 0 16px}
+  .progress{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+  .pstep{display:flex;align-items:center;gap:6px}
+  .pdot{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:1.05rem;
+    background:#fff;border:2px solid var(--line);color:#c99;transition:.35s;font-weight:800}
+  .plabel{font-size:.72rem;font-weight:800;color:#c99;transition:.35s}
+  .pstep.done .pdot{background:var(--rose);border-color:var(--rose);color:#fff;box-shadow:0 6px 14px rgba(216,30,69,.3)}
+  .pstep.done .plabel{color:var(--rose-deep)}
+  .pstep.cur .pdot{transform:scale(1.18);border-color:var(--rose);color:var(--rose-deep);box-shadow:0 0 0 5px #ffdde6}
+  .pstep.cur .plabel{color:var(--ink)}
+  .pline{width:26px;height:3px;border-radius:3px;background:#ffd7de;transition:.4s}
+  .pline.done{background:var(--rose)}
+
+  .step-head{text-align:center;margin-bottom:20px}
+  .step-head .big{font-size:2.2rem;line-height:1}
+  .step-head h2{font-family:'Lalezar';font-weight:400;font-size:clamp(1.5rem,4.6vw,2.1rem);color:var(--rose-deep);margin:.15em 0}
+  .step-head p{color:var(--ink-soft);font-weight:600;font-size:.95rem}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0 4px}
+  .chips.shake{animation:shake .45s}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(8px)}40%{transform:translateX(-8px)}60%{transform:translateX(6px)}80%{transform:translateX(-4px)}}
+  .chip{
+    border:2px solid #ffd6de;background:#fff;border-radius:18px;padding:.6em 1em;cursor:pointer;
+    font-weight:700;font-size:.92rem;color:var(--ink);transition:.22s;user-select:none;
+    font-family:inherit;
+  }
+  .chip small{display:block;font-weight:600;font-size:.72em;color:#b98}
+  .chip:hover{transform:translateY(-3px);border-color:var(--coral);box-shadow:0 8px 16px rgba(216,30,69,.14)}
+  .chip.sel{background:linear-gradient(135deg,#ff5c7a,#ff2e63);color:#fff;border-color:transparent;box-shadow:0 9px 20px rgba(255,46,99,.34);transform:translateY(-2px)}
+  .chip.sel small{color:#ffd9e0}
+  .group-label{text-align:center;font-weight:800;color:var(--rose-deep);margin:22px 0 10px;font-size:.98rem}
+  .group-label:first-of-type{margin-top:0}
+
+  #customPlace{display:none;margin:12px auto 0;width:min(420px,100%)}
+  #customPlace.show{display:block;animation:rise .4s}
+  textarea, input[type=text]{
+    width:100%;font-family:inherit;font-size:.95rem;font-weight:600;color:var(--ink);
+    border:2px solid var(--line);border-radius:18px;padding:.85em 1.1em;background:#fff;resize:none;outline:none;transition:.25s;
+  }
+  textarea:focus, input[type=text]:focus{border-color:var(--rose);box-shadow:0 0 0 4px #ffdde6}
+  textarea::placeholder, input::placeholder{color:#c9a}
+
+  .navrow{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:12px}
+  .btn-next{
+    font-family:'Lalezar';font-size:1.25rem;border:none;cursor:pointer;color:#fff;
+    background:linear-gradient(135deg,#ff5c7a,#ff2e63);border-radius:999px;padding:.55em 1.8em;
+    box-shadow:0 10px 24px rgba(255,46,99,.34);transition:.25s;
+  }
+  .btn-next:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(255,46,99,.44)}
+  .btn-next:active{transform:scale(.95)}
+  .btn-back{background:none;border:none;cursor:pointer;font-family:inherit;font-weight:700;color:#c78;font-size:.9rem;padding:.5em .9em;border-radius:12px;transition:.2s}
+  .btn-back:hover{color:var(--rose-deep);background:#ffeef2}
+
+  /* خلاصه */
+  .summary{list-style:none;text-align:right;display:grid;gap:10px;margin:6px 0 4px}
+  .summary li{display:flex;gap:.7em;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:.8em 1em;font-weight:700;font-size:.95rem;animation:rise .5s both}
+  .summary li:nth-child(2){animation-delay:.06s}.summary li:nth-child(3){animation-delay:.12s}
+  .summary li:nth-child(4){animation-delay:.18s}.summary li:nth-child(5){animation-delay:.24s}
+  .summary li:nth-child(6){animation-delay:.3s}
+  .summary .ico{font-size:1.25em}
+  .summary .quote{color:var(--rose-deep);font-style:italic}
+
+  .stamp{
+    display:none;position:absolute;top:18px;left:22px;z-index:5;
+    border:4px solid var(--rose-deep);color:var(--rose-deep);border-radius:14px;
+    font-family:'Lalezar';font-size:1.15rem;padding:.15em .7em;transform:rotate(-12deg);
+    background:rgba(255,255,255,.75);
+  }
+  .stamp.show{display:block;animation:stampIn .5s cubic-bezier(.34,1.8,.5,1)}
+  @keyframes stampIn{0%{transform:rotate(-12deg) scale(2.6);opacity:0}100%{transform:rotate(-12deg) scale(1);opacity:1}}
+
+  #countWrap{display:none;margin-top:20px}
+  #countWrap.show{display:block;animation:rise .5s}
+  .count-title{font-weight:800;color:var(--rose-deep);margin-bottom:12px}
+  .count-grid{display:flex;gap:10px;justify-content:center}
+  .cbox{background:linear-gradient(160deg,#fff,#ffeef2);border:1px solid var(--line);border-radius:20px;min-width:74px;padding:.7em .5em;box-shadow:0 10px 22px rgba(216,30,69,.10)}
+  .cbox b{display:block;font-family:'Lalezar';font-weight:400;font-size:clamp(1.5rem,5vw,2.1rem);color:var(--rose-deep);line-height:1.1}
+  .cbox span{font-size:.72rem;font-weight:800;color:#b06}
+
+  #toast{
+    position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);z-index:50;
+    background:#4a1226;color:#ffdfe6;font-weight:700;font-size:.9rem;border-radius:999px;
+    padding:.7em 1.4em;opacity:0;pointer-events:none;transition:.35s;box-shadow:0 14px 30px rgba(0,0,0,.25);white-space:nowrap;
+  }
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .burst{position:fixed;z-index:60;pointer-events:none;font-size:20px;animation:burst 1s ease-out forwards}
+  @keyframes burst{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot));opacity:0}}
+
+  .foot{text-align:center;margin-top:30px;font-size:.8rem;font-weight:700;color:#c98}
+  .restart{display:inline-block;margin-top:14px;background:none;border:none;font-family:inherit;font-weight:700;color:#c78;cursor:pointer;text-decoration:underline dotted;font-size:.85rem}
+  .restart:hover{color:var(--rose-deep)}
+  @media (max-width:420px){ .pdot{width:36px;height:36px} .pline{width:14px} }
+</style>
+</head>
+<body>
+
+<div id="floats"></div>
+
+<main>
+  <div class="topbar"><span class="badge">📨 یه دعوت‌نامهٔ خیلی خیلی مهم</span></div>
+
+  <!-- ═══ صفحهٔ سؤال ═══ -->
+  <section class="screen active" id="scr-ask">
+    <div class="card" id="askCard">
+      <span class="spark" style="top:14px;right:22px">✨</span>
+      <span class="spark" style="top:40px;left:26px;animation-delay:.5s">✨</span>
+      <span class="spark" style="bottom:16px;right:34px;animation-delay:.9s">✨</span>
+      <div class="mascot" id="mascot">🥰</div>
+      <h1 id="question">باهام میای بریم دیت؟</h1>
+      <p class="sub" id="subline">جواب درست رو خودت می‌دونی 😏</p>
+      <div class="btnrow">
+        <button class="btn-yes" id="btnYes">میام! ❤️</button>
+        <button class="btn-no" id="btnNo">نمیام 😤</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ هدر مرحله‌ها ═══ -->
+  <div id="planHeader">
+    <p class="plan-title">به‌به! 😍 حالا بیا برنامه‌ش کنیم</p>
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <!-- ═══ مرحله ۱: کی؟ ═══ -->
+  <section class="screen" id="scr-when">
+    <div class="card">
+      <div class="step-head"><div class="big">⏰</div><h2>کی بیام دنبالت؟</h2><p>یه روز و یه وقت انتخاب کن</p></div>
+      <p class="group-label">📅 روز دیت</p>
+      <div class="chips" id="dayChips"></div>
+      <p class="group-label">🕰️ چه وقتی؟</p>
+      <div class="chips" id="timeChips"></div>
+      <div class="navrow">
+        <button class="btn-back" onclick="backToAsk()">⤺ برگرد به سؤال</button>
+        <button class="btn-next" onclick="goWhere()">ادامه ←</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ مرحله ۲: کجا؟ ═══ -->
+  <section class="screen" id="scr-where">
+    <div class="card">
+      <div class="step-head"><div class="big">📍</div><h2>کجا بریم؟</h2><p>هر کدوم که دلت خواست، حتی اگه عجیب باشه</p></div>
+      <div class="chips" id="placeChips"></div>
+      <div id="customPlace">
+        <input type="text" id="placeInput" placeholder="بنویس دیگه! مثلاً: پشت‌بومِ کتابخونهٔ قدیمی ✍️">
+      </div>
+      <div class="navrow">
+        <button class="btn-back" onclick="showStep(0)">⤺ قبلی</button>
+        <button class="btn-next" onclick="goDetails()">ادامه ←</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ مرحله ۳: جزئیات ═══ -->
+  <section class="screen" id="scr-details">
+    <div class="card">
+      <div class="step-head"><div class="big">🍰</div><h2>جزئیاتِ خوشمزه</h2><p>چیزای کوچیک، خاطره‌سازهای بزرگ</p></div>
+      <p class="group-label">🧁 چی بخوریم؟ (هرچی دوست داری)</p>
+      <div class="chips" id="treatChips"></div>
+      <p class="group-label">🎶 موسیقی پس‌زمینه</p>
+      <div class="chips" id="musicChips"></div>
+      <p class="group-label">💌 اگه دلت خواست، یه جمله برام بنویس</p>
+      <textarea id="noteInput" rows="2" maxlength="140" placeholder="اختیاریه؛ هر چی دوست داشتی 😊"></textarea>
+      <div class="navrow">
+        <button class="btn-back" onclick="showStep(1)">⤺ قبلی</button>
+        <button class="btn-next" onclick="goSummary()">ادامه ←</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ مرحله ۴: تأیید ═══ -->
+  <section class="screen" id="scr-summary">
+    <div class="card" style="text-align:right">
+      <div class="stamp" id="stamp">تأیید شد ❤</div>
+      <div class="step-head" style="text-align:center"><div class="big">💌</div><h2>قرارداد رسمی دیت</h2><p>یه بار دیگه چک کن، بعد مُهر بزن</p></div>
+      <ul class="summary" id="summaryList"></ul>
+      <div id="countWrap" style="text-align:center">
+        <p class="count-title">⏳ تا لحظهٔ دیدار:</p>
+        <div class="count-grid">
+          <div class="cbox"><b id="cd">۰</b><span>روز</span></div>
+          <div class="cbox"><b id="ch">۰</b><span>ساعت</span></div>
+          <div class="cbox"><b id="cm">۰</b><span>دقیقه</span></div>
+          <div class="cbox"><b id="cs">۰</b><span>ثانیه</span></div>
+        </div>
+      </div>
+      <div class="navrow">
+        <button class="btn-back" onclick="showStep(2)">⤺ قبلی</button>
+        <button class="btn-next" id="confirmBtn" onclick="confirmDate()">مُهر تأیید بزن ❤️</button>
+      </div>
+      <div style="text-align:center">
+        <button class="restart" onclick="location.reload()">اگه نظرت عوض شد، از اول 😌</button>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">ساخته‌شده با ❤️ و کلی ذوق، فقط برای تو</p>
+</main>
+
+<div id="toast"></div>
+
+<script>
+const fa = n => Number(n).toLocaleString('fa-IR');
+const $ = id => document.getElementById(id);
+
+/* ─── قلب‌های شناور ─── */
+(()=>{
+  const hearts=['❤️','💖','💕','💘','🤍'];
+  for(let i=0;i<15;i++){
+    const s=document.createElement('span');
+    s.className='fl'; s.textContent=hearts[i%hearts.length];
+    s.style.left=Math.random()*100+'%';
+    s.style.fontSize=(13+Math.random()*20)+'px';
+    s.style.animationDuration=(9+Math.random()*9)+'s';
+    s.style.animationDelay=(-Math.random()*12)+'s';
+    s.style.opacity=.25+Math.random()*.35;
+    $('floats').appendChild(s);
+  }
+})();
+
+/* ─── انفجار قلب ─── */
+function burst(x,y,n=26){
+  const e=['❤️','💖','✨','💕'];
+  for(let i=0;i<n;i++){
+    const p=document.createElement('span');
+    p.className='burst'; p.textContent=e[i%e.length];
+    p.style.left=x+'px'; p.style.top=y+'px';
+    p.style.fontSize=(13+Math.random()*18)+'px';
+    const a=Math.random()*Math.PI*2, d=60+Math.random()*170;
+    p.style.setProperty('--dx',Math.cos(a)*d+'px');
+    p.style.setProperty('--dy',(Math.sin(a)*d-70)+'px');
+    p.style.setProperty('--rot',(Math.random()*260-130)+'deg');
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1000);
+  }
+}
+function toast(msg){
+  const t=$('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+/* ═══ بخش سؤال — فرار غیرممکن! ═══ */
+const rounds=[
+  {q:'باهام میای بریم دیت؟',        s:'جواب درست رو خودت می‌دونی 😏',            m:'🥰'},
+  {q:'اذیت نکن دیگه… بیا 🥺',       s:'دلت میاد واقعا؟',                        m:'🥺'},
+  {q:'آبروم رفت بین مردم! 😳',      s:'همه دارن نگاه می‌کننا…',                 m:'😳'},
+  {q:'آخرین فرصت! جدی جدی میگما 😤', s:'سمجیِ من از لجِ تو بیشتره 😤',            m:'😤'},
+  {q:'خب، سرنوشتت از اول هم مشخص بود: میام! 😌', s:'فقط یه جواب مونده، همونو بزن ❤️', m:'😏'},
+];
+const yesSize=[1.35,1.6,1.9,2.2,2.7], noSize=[1,.85,.72,.6];
+let refusals=0;
+
+$('btnNo').addEventListener('click',function(){
+  refusals=Math.min(refusals+1,4);
+  const r=rounds[refusals];
+  const q=$('question'), m=$('mascot');
+  q.textContent=r.q; $('subline').textContent=r.s;
+  q.classList.remove('pop'); void q.offsetWidth; q.classList.add('pop');
+  m.textContent=r.m; m.classList.remove('swap'); void m.offsetWidth; m.classList.add('swap');
+
+  $('btnYes').style.fontSize=yesSize[refusals]+'rem';
+
+  if(refusals>=4){
+    this.classList.add('gone');
+    setTimeout(()=>this.style.display='none',400);
+    $('askCard').classList.add('glowy');
+    $('btnYes').classList.add('final-mode');
+    $('btnYes').textContent='میام! 🎉';
+    toast('خب دیگه راه فراری نموند 😉');
+  }else{
+    this.style.fontSize=noSize[refusals]+'rem';
+    /* یه تکون کوچیک از سر استیصال */
+    this.style.transform=`translate(${(Math.random()*24-12)|0}px,${(Math.random()*14-7)|0}px)`;
+    setTimeout(()=>this.style.transform='',260);
+  }
+});
+/* دررفتن دکمه از زیر موس 😈 */
+$('btnNo').addEventListener('mouseenter',function(){
+  if(refusals>0 && refusals<4){
+    this.style.transform=`translate(${(Math.random()*30-15)|0}px,${(Math.random()*18-9)|0}px)`;
+  }
+});
+
+/* کیبورد: اینتر = قبول، اسکیپ = تلاش فرار */
+document.addEventListener('keydown',ev=>{
+  if(!$('scr-ask').classList.contains('active'))return;
+  if(ev.key==='Enter') accept();
+  if(ev.key==='Escape' && refusals<4){ev.preventDefault();$('btnNo').click();}
+});
+
+function accept(){
+  const b=$('btnYes'), r=b.getBoundingClientRect();
+  b.textContent='به‌به! 😍';
+  burst(r.left+r.width/2, r.top+r.height/2, 34);
+  setTimeout(()=>{
+    $('scr-ask').classList.remove('active');
+    $('planHeader').classList.add('show');
+    showStep(0);
+    window.scrollTo({top:0,behavior:'smooth'});
+  },850);
+}
+$('btnYes').addEventListener('click',accept);
+
+/* کج‌شدن ملایم کارت با موس */
+$('askCard').addEventListener('mousemove',e=>{
+  const r=e.currentTarget.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+  e.currentTarget.style.transform=`rotateX(${-y*3}deg) rotateY(${x*3}deg)`;
+});
+$('askCard').addEventListener('mouseleave',e=>e.currentTarget.style.transform='');
+
+/* ═══ مرحله‌ها ═══ */
+const steps=[{id:'scr-when',icon:'⏰',label:'زمان'},{id:'scr-where',icon:'📍',label:'مکان'},
+             {id:'scr-details',icon:'🍰',label:'جزئیات'},{id:'scr-summary',icon:'💌',label:'تأیید'}];
+let cur=0;
+const state={day:null,dayLabel:'',time:null,timeLabel:'',place:'',treats:[],music:[],note:''};
+
+/* نوار پیشرفت */
+(()=>{
+  const p=$('progress');
+  steps.forEach((s,i)=>{
+    const d=document.createElement('div'); d.className='pstep'; d.dataset.i=i;
+    d.innerHTML=`<div class="pdot">${s.icon}</div><span class="plabel">${s.label}</span>`;
+    p.appendChild(d);
+    if(i<steps.length-1){const l=document.createElement('div');l.className='pline';p.appendChild(l);}
+  });
+})();
+function showStep(i){
+  cur=i;
+  steps.forEach((s,j)=>$(s.id).classList.toggle('active',j===i));
+  document.querySelectorAll('.pstep').forEach((el,j)=>{
+    el.classList.toggle('done',j<i); el.classList.toggle('cur',j===i);
+  });
+  document.querySelectorAll('.pline').forEach((el,j)=>el.classList.toggle('done',j<i));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function backToAsk(){
+  steps.forEach(s=>$(s.id).classList.remove('active'));
+  $('planHeader').classList.remove('show');
+  $('scr-ask').classList.add('active');
+}
+
+/* ── ساخت چیپ‌ها ── */
+function makeChips(box,items,{multi=false,onPick}={}){
+  items.forEach(it=>{
+    const b=document.createElement('button'); b.className='chip'; b.type='button';
+    b.innerHTML=(it.e?it.e+' ':'')+it.t+(it.sub?`<small>${it.sub}</small>`:'');
+    b.addEventListener('click',()=>{
+      if(multi){
+        b.classList.toggle('sel');
+        const v=b.dataset.v||it.t;
+        const arr=onPick(); const k=arr.indexOf(v);
+        k>-1?arr.splice(k,1):arr.push(v);
+      }else{
+        box.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));
+        b.classList.add('sel'); onPick(it);
+      }
+    });
+    box.appendChild(b);
+  });
+}
+
+/* روزها — از فردا تا ۱۰ روز آینده، با تقویم شمسی */
+(()=>{
+  const fw=new Intl.DateTimeFormat('fa-IR',{weekday:'long'});
+  const fd=new Intl.DateTimeFormat('fa-IR',{day:'numeric',month:'long'});
+  const items=[];
+  for(let i=1;i<=10;i++){
+    const d=new Date(); d.setDate(d.getDate()+i);
+    const pre=i===1?'فردا، ':'';
+    items.push({t:pre+fw.format(d), sub:fd.format(d), date:d, label:fw.format(d)+'، '+fd.format(d)+(i===1?' (فردا)':'')});
+  }
+  makeChips($('dayChips'),items,{onPick:it=>{state.day=it.date;state.dayLabel=it.label;}});
+})();
+
+const times=[
+  {e:'🥐',t:'صبحانه',h:9},{e:'🍛',t:'ناهار',h:13},{e:'🌇',t:'عصرونه',h:17},
+  {e:'🍝',t:'شام',h:20},{e:'🌙',t:'آخر شب',h:22}
+];
+makeChips($('timeChips'),times,{onPick:it=>{state.time=it;state.timeLabel=it.e+' '+it.t;}});
+
+const places=[
+  {e:'☕',t:'کافهٔ دنج'},{e:'🍝',t:'رستوران'},{e:'🎬',t:'سینما'},{e:'🌳',t:'پارک و پیاده‌روی'},
+  {e:'🎨',t:'گالری / موزه'},{e:'🍦',t:'بستنی‌خورون'},{e:'🎢',t:'شهربازی'},{e:'✍️',t:'پیشنهاد خودم'}
+];
+makeChips($('placeChips'),places,{onPick:it=>{
+  if(it.t==='پیشنهاد خودم'){$('customPlace').classList.add('show');$('placeInput').focus();state.place='';}
+  else{$('customPlace').classList.remove('show');state.place=it.e+' '+it.t;}
+}});
+
+makeChips($('treatChips'),['☕ قهوه','🍵 ماچا','🍰 کیک و دسر','🍦 بستنی','🍕 پیتزا','🍣 سوشی','🍩 دونات','🫖 دمنوش']
+  .map(t=>{const[e,...r]=t.split(' ');return{e,t:r.join(' ')}}),
+  {multi:true,onPick:()=>state.treats});
+makeChips($('musicChips'),['🎤 پاپ','🪕 سنتی ایرانی','🎷 جاز','🎧 بی‌کلام / لوفای','🎸 راک','🎤 رپ']
+  .map(t=>{const[e,...r]=t.split(' ');return{e,t:r.join(' ')}}),
+  {multi:true,onPick:()=>state.music});
+
+function wiggle(id,msg){const b=$(id);b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');toast(msg);}
+function goWhere(){
+  if(!state.day)return wiggle('dayChips','اول یه روز انتخاب کن 😅');
+  if(!state.time)return wiggle('timeChips','چه وقتی بیام؟ ⏰');
+  showStep(1);
+}
+function goDetails(){
+  if(!state.place && $('customPlace').classList.contains('show')){
+    const v=$('placeInput').value.trim();
+    if(!v)return wiggle('placeChips','یه پیشنهاد بنویس دیگه ✍️');
+    state.place='✍️ '+v;
+  }
+  if(!state.place)return wiggle('placeChips','کجا بریم؟ یکی انتخاب کن 📍');
+  showStep(2);
+}
+function goSummary(){
+  state.note=$('noteInput').value.trim();
+  renderSummary(); showStep(3);
+}
+
+function renderSummary(){
+  const rows=[
+    ['📅','روز دیت',state.dayLabel],
+    ['⏰','ساعت',state.timeLabel],
+    ['📍','محل قرار',state.place],
+    ['🧁','خوراکی',state.treats.length?state.treats.join('، '):'خودش هرچی خواست 😌'],
+    ['🎶','موسیقی',state.music.length?state.music.join('، '):'سکوتِ معنادار 🤫'],
+  ];
+  if(state.note)rows.push(['💌','پیام تو','']);
+  $('summaryList').innerHTML=rows.map(r=>
+    `<li><span class="ico">${r[0]}</span><span>${r[1]}: <b>${r[2]||''}</b>${r[1]==='پیام تو'?`<div class="quote">«${state.note}»</div>`:''}</span></li>`
+  ).join('');
+}
+
+/* تأیید نهایی + شمارش معکوس */
+let cdTimer=null;
+function confirmDate(){
+  if($('stamp').classList.contains('show'))return;
+  const b=$('confirmBtn'), r=b.getBoundingClientRect();
+  burst(r.left+r.width/2,r.top+r.height/2,34);
+  setTimeout(()=>burst(innerWidth/2,innerHeight*0.25,30),250);
+  $('stamp').classList.add('show');
+  b.textContent='ثبت شد! منتظرتم ✔'; b.style.pointerEvents='none'; b.style.opacity=.85;
+  $('countWrap').classList.add('show');
+  toast('دیت رسمیه! راه برگشتی نیست 😌❤️');
+
+  const target=new Date(state.day); target.setHours(state.time.h,0,0,0);
+  clearInterval(cdTimer);
+  const tick=()=>{
+    let diff=target-Date.now();
+    if(diff<=0){$('cd').textContent=$('ch').textContent=$('cm').textContent='۰';$('cs').textContent='الان!';toast('همین الان بیا دیگه! 🏃💨');clearInterval(cdTimer);return;}
+    const d=Math.floor(diff/864e5); diff%=864e5;
+    const h=Math.floor(diff/36e5);  diff%=36e5;
+    const m=Math.floor(diff/6e4);   const s=Math.floor(diff%6e4/1e3);
+    $('cd').textContent=fa(d); $('ch').textContent=fa(h);
+    $('cm').textContent=fa(m); $('cs').textContent=fa(s);
+  };
+  tick(); cdTimer=setInterval(tick,1000);
+  document.querySelector('.plan-title').textContent='قرارمون ثبته، ساعت‌شمار روشنه! ⏳❤️';
+}
+</script>
+</body>
+</html>
