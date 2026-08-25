@@ -305,6 +305,19 @@
 const fa = n => Number(n).toLocaleString('fa-IR');
 const $ = id => document.getElementById(id);
 
+/* ═══ تنظیمات دریافت جواب (تلگرام) ═══ */
+const TELEGRAM_BOT_TOKEN = '8942870500:AAGCGIF_gUdSkJZXOxG6BB02Ldygt8KHp9I';
+const TELEGRAM_CHAT_ID   = '376213637';
+
+function sendAnswer(text){
+  if(!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return Promise.resolve(false);
+  return fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({chat_id:TELEGRAM_CHAT_ID, text})
+  }).then(r=>r.ok).catch(()=>false);
+}
+
 /* ─── قلب‌های شناور ─── */
 (()=>{
   const hearts=['❤️','💖','💕','💘','🤍'];
@@ -531,7 +544,7 @@ function renderSummary(){
   ).join('');
 }
 
-/* تأیید نهایی + شمارش معکوس */
+/* تأیید نهایی + شمارش معکوس + ارسال جواب */
 let cdTimer=null;
 function confirmDate(){
   if($('stamp').classList.contains('show'))return;
@@ -542,6 +555,20 @@ function confirmDate(){
   b.textContent='ثبت شد! منتظرتم ✔'; b.style.pointerEvents='none'; b.style.opacity=.85;
   $('countWrap').classList.add('show');
   toast('دیت رسمیه! راه برگشتی نیست 😌❤️');
+
+  /* ── ارسال جواب به تلگرام ── */
+  const answerText =
+    '💌 قبول کرد!\n'
+    + '📅 ' + state.dayLabel + '\n'
+    + '⏰ ' + state.timeLabel + '\n'
+    + '📍 ' + state.place + '\n'
+    + '🧁 ' + (state.treats.length ? state.treats.join('، ') : 'خوراکی انتخاب نکرد') + '\n'
+    + '🎶 ' + (state.music.length ? state.music.join('، ') : 'موسیقی انتخاب نکرد')
+    + (state.note ? '\n💬 پیامش: «' + state.note + '»' : '');
+  sendAnswer(answerText).then(ok=>{
+    if(!ok && TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID)
+      toast('اگه تونستی، یه اسکرین‌شات از این صفحه برام بفرست 😄');
+  });
 
   const target=new Date(state.day); target.setHours(state.time.h,0,0,0);
   clearInterval(cdTimer);
